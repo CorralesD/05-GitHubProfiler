@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="" ng-app="app">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title Page</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+</head>
+
+<body>
+    <div class="container" ng-controller="HomeController as home">
+        <div class="form-group clearfix">
+            <div class="well">
+                <h3>GitHub Profiler</h3>
+                <p class="lead"> Find out information about any Github user!</p>
+            </div>
+            <div class="input-group">
+                <input type="text" name="" class="form-control" ng-model="home.username">
+                <span class="input-group-btn"><button class = "btn btn-default" type = "button" ng-click="home.callGithubApi()"> GO!</button></span>
+            </div>
+            <br>
+            <div class="row text-center">
+                <div class="col-sm-3">
+                    <img ng-src={{home.data.avatar_url}} / class="img-circle img-responsive center-block">
+                </div>
+                <div class="col-sm-3">
+                    <div class="well">
+                        <h5 class="lead">Followers</h5>
+                        <br>
+                        <p><b>{{home.data.followers}}</b></p>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="well">
+                        <h5 class="lead">Following</h5>
+                        <br>
+                        <p><b>{{home.data.following}}</b></p>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="well">
+                        <h5 class="lead">Public Repositories</h5>
+                        <br>
+                        <p><b>{{home.data.public_repos}}</b></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-sm-3">
+                    <p id="hide" style="visibility: hidden;">
+                        <b>{{home.data.name}}</b>
+                        {{home.data.login}} <br>
+                        <span>{{home.data.location}}</span><br>
+                        <span ng-class='home.data.hireable && "text-success" || "text-danger"'>{{home.data.hireable ? "Looking for work" : "Not looking for work"}}</span><br>
+                        <span>Slinging code since {{home.data.created_at | date:'MMM d,yyyy'}}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script src="//code.jquery.com/jquery.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqsm-3s1yVqOtnepnHVP9aJ7sm-3" crossorigin="anonymous"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="app/app.module.js"></script>
+    <script src="app/home/home.controller.js"></script>
+</body>
+
+</html>
